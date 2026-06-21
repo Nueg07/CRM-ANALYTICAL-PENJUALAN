@@ -1,0 +1,65 @@
+<?php include 'header.php'; ?>
+
+<div class="content-wrapper">
+
+  <section class="content-header">
+    <h1>
+      Customer
+      <small>Data Customer</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">Laporan Customer</li>
+    </ol>
+  </section>
+
+  <section class="content">
+    <div class="row">
+      <section class="col-lg-10 col-lg-offset-1">
+        <div class="box box-info">
+
+          <div class="box-header">
+            <h3 class="box-title">Laporan Customer</h3>           
+            <a href="customer_cetak.php" target="_blank" class="btn btn-success btn-sm"><i class="fa fa-print"></i> &nbsp CETAK</a>                        
+          </div>
+          <div class="box-body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th width="1%">NO</th>
+                    <th>NAMA</th>
+                    <th>EMAIL</th>
+                    <th>HP</th>
+                    <th>ALAMAT</th>                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                  include '../koneksi.php';
+                  $no=1;
+                  $data = mysqli_query($koneksi,"SELECT * FROM customer");
+                  while($d = mysqli_fetch_array($data)){
+                    ?>
+                    <tr>
+                      <td><?php echo $no++; ?></td>
+                      <td><?php echo $d['customer_nama']; ?></td>
+                      <td><?php echo $d['customer_email']; ?></td>
+                      <td><?php echo $d['customer_hp']; ?></td>
+                      <td><?php echo $d['customer_alamat']; ?></td>                     
+                    </tr>
+                    <?php 
+                  }
+                  ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </section>
+
+</div>
+<?php include 'footer.php'; ?>
